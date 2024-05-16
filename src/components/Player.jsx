@@ -236,6 +236,7 @@ function Player() {
         onTimeUpdate={updateProgress}
         onCanPlay={updateProgress}
         onEnded={onVideoEnd}
+        onClick={onPlayToggle}
       />
       <div className='show-controls'>
         <div className='controls-container'>
