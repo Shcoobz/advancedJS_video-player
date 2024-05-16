@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import PlayControls from './controls/PlayControls';
 import VolumeControls from './controls/VolumeControls';
