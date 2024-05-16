@@ -8,6 +8,9 @@ import FullscreenToggle from './controls/FullscreenToggle';
 const VIDEO_URL =
   'https://assets.mixkit.co/videos/preview/mixkit-a-couple-of-cats-in-the-snow-9949-large.mp4';
 
+/**
+ * Constants used within the Player component for time and volume calculations.
+ */
 const SECONDS_PER_MINUTE = 60;
 const PERCENT_MAX = 100;
 const VOLUME_LEVELS = {
@@ -18,11 +21,20 @@ const VOLUME_LEVELS = {
   MAX: 1,
 };
 
+/**
+ * Player component that encapsulates video playback controls including play/pause, volume control, playback speed, and fullscreen toggle.
+ */
 function Player() {
   const videoRef = useRef(null);
   const [lastVolume, setLastVolume] = useState(VOLUME_LEVELS.MIDDLE);
   const [fullscreen, setFullscreen] = useState(false);
 
+  /**
+   * Toggles between play and pause icons and titles based on the action performed.
+   * @param {string} icon - Current icon class to be replaced.
+   * @param {string} action - New icon class to replace the old one.
+   * @param {string} title - Title to set for the icon, reflecting the current state.
+   */
   function toggleIcon(icon, action, title) {
     const playBtn = document.getElementById('play-btn');
 
@@ -30,6 +42,11 @@ function Player() {
     playBtn.setAttribute('title', title);
   }
 
+  /**
+   * Formats time in seconds into a minute:second string.
+   * @param {number} time - Time in seconds to be formatted.
+   * @returns {string} Formatted time as a string.
+   */
   function displayTime(time) {
     const minutes = Math.floor(time / SECONDS_PER_MINUTE);
     const seconds = Math.floor(time % SECONDS_PER_MINUTE)
@@ -39,6 +56,9 @@ function Player() {
     return `${minutes}:${seconds}`;
   }
 
+  /**
+   * Updates the video progress bar and time display based on current playback position.
+   */
   function updateProgress() {
     const PERCENT_MAX = 100;
 
@@ -55,6 +75,9 @@ function Player() {
     duration.textContent = displayTime(video.duration);
   }
 
+  /**
+   * Handles play toggle functionality. Plays or pauses the video based on its current state and updates the UI accordingly.
+   */
   function onPlayToggle() {
     const video = videoRef.current;
 
@@ -67,10 +90,17 @@ function Player() {
     }
   }
 
+  /**
+   * Handles actions to take when video playback ends, such as resetting play icon.
+   */
   function onVideoEnd() {
     toggleIcon('pause', 'play', 'Replay');
   }
 
+  /**
+   * Sets the video playback position based on user interaction with the progress bar.
+   * @param {MouseEvent} e - The event triggered by mouse interaction with the progress bar.
+   */
   function onProgressMouseDown(e) {
     const video = videoRef.current;
     const progressRange = e.currentTarget;
@@ -81,6 +111,10 @@ function Player() {
     updateProgress();
   }
 
+  /**
+   * Updates the volume icon based on the current volume level.
+   * @param {number} volume - Current volume level.
+   */
   function updateVolumeIcon(volume) {
     const volumeIcon = document.getElementById('volume-icon');
     volumeIcon.className = '';
@@ -97,6 +131,10 @@ function Player() {
     }
   }
 
+  /**
+   * Handles volume adjustments via the volume bar.
+   * @param {MouseEvent} e - The event triggered by mouse interaction with the volume bar.
+   */
   function onVolumeMouseDown(e) {
     const video = videoRef.current;
     const volumeRange = e.currentTarget;
@@ -111,6 +149,9 @@ function Player() {
     updateVolumeIcon(volume);
   }
 
+  /**
+   * Toggles mute state based on current volume. Mutes or unmutes the video and updates the UI accordingly.
+   */
   function onToggleMute() {
     const video = videoRef.current;
     const isMuted = video.volume === VOLUME_LEVELS.ZERO;
@@ -129,12 +170,19 @@ function Player() {
     updateVolumeIcon(video.volume);
   }
 
+  /**
+   * Updates video playback speed based on user selection from the speed controls dropdown.
+   */
   function onSpeedChange() {
     const video = videoRef.current;
     const speed = document.querySelector('.player-speed');
     video.playbackRate = speed.value;
   }
 
+  /**
+   * Enters fullscreen mode for the player container.
+   * @param {HTMLElement} elem - Element to display in fullscreen.
+   */
   function openFullscreen(elem) {
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
@@ -150,6 +198,9 @@ function Player() {
     video.classList.add('video-fullscreen');
   }
 
+  /**
+   * Exits fullscreen mode and restores the player to its original state.
+   */
   function closeFullscreen() {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -165,6 +216,9 @@ function Player() {
     video.classList.remove('video-fullscreen');
   }
 
+  /**
+   * Toggles fullscreen mode on and off.
+   */
   function onFullscreenToggle() {
     setFullscreen(!fullscreen);
 

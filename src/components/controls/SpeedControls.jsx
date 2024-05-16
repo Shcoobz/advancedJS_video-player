@@ -1,5 +1,10 @@
 import PropTypes from 'prop-types';
 
+/**
+ * SpeedControls provides a dropdown select element for users to change the playback speed of media.
+ * This component renders a select box with pre-defined speed options, which when changed, triggers a callback.
+ * @param {Function} onSpeedChange - Callback function to be invoked when the playback speed is changed via the dropdown.
+ */
 function SpeedControls({ onSpeedChange }) {
   return (
     <div className='speed' title='Playback Rate'>

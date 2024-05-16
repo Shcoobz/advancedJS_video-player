@@ -1,5 +1,11 @@
 import PropTypes from 'prop-types';
 
+/**
+ * VolumeControls component offers UI elements for controlling the media volume.
+ * It includes a mute/unmute icon and a volume slider for precise control.
+ * @param {Function} onToggleMute - Callback function triggered when the mute/unmute icon is clicked.
+ * @param {Function} onVolumeMouseDown - Callback function triggered when the user interacts with the volume slider.
+ */
 function VolumeControls({ onToggleMute, onVolumeMouseDown }) {
   return (
     <div className='volume'>
