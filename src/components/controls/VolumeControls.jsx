@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function VolumeControls({ onToggleMute, onVolumeMouseDown }) {
   return (
     <div className='volume'>
@@ -14,5 +16,10 @@ function VolumeControls({ onToggleMute, onVolumeMouseDown }) {
     </div>
   );
 }
+
+VolumeControls.propTypes = {
+  onToggleMute: PropTypes.func.isRequired,
+  onVolumeMouseDown: PropTypes.func.isRequired,
+};
 
 export default VolumeControls;

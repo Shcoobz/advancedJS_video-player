@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function PlayControls({ onPlayToggle }) {
   return (
     <div className='play-controls'>
@@ -5,5 +7,9 @@ function PlayControls({ onPlayToggle }) {
     </div>
   );
 }
+
+PlayControls.propTypes = {
+  onPlayToggle: PropTypes.func.isRequired,
+};
 
 export default PlayControls;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function SpeedControls({ onSpeedChange }) {
   return (
     <div className='speed' title='Playback Rate'>
@@ -13,5 +15,9 @@ function SpeedControls({ onSpeedChange }) {
     </div>
   );
 }
+
+SpeedControls.propTypes = {
+  onSpeedChange: PropTypes.func.isRequired,
+};
 
 export default SpeedControls;

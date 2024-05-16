@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function FullscreenToggle({ onFullscreenToggle }) {
   return (
     <div className='fullscreen'>
@@ -5,5 +7,9 @@ function FullscreenToggle({ onFullscreenToggle }) {
     </div>
   );
 }
+
+FullscreenToggle.propTypes = {
+  onFullscreenToggle: PropTypes.func.isRequired,
+};
 
 export default FullscreenToggle;
