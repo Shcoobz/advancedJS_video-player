@@ -1,7 +1,15 @@
 import { useRef, useState } from 'react';
 
+import PlayControls from './controls/PlayControls';
+import VolumeControls from './controls/VolumeControls';
+import SpeedControls from './controls/SpeedControls';
+import FullscreenToggle from './controls/FullscreenToggle';
+
 const VIDEO_URL =
   'https://assets.mixkit.co/videos/preview/mixkit-a-couple-of-cats-in-the-snow-9949-large.mp4';
+
+const SECONDS_PER_MINUTE = 60;
+const PERCENT_MAX = 100;
 const VOLUME_LEVELS = {
   ZERO: 0,
   LOW: 0.1,
@@ -9,9 +17,6 @@ const VOLUME_LEVELS = {
   HIGH: 0.9,
   MAX: 1,
 };
-
-const SECONDS_PER_MINUTE = 60;
-const PERCENT_MAX = 100;
 
 function Player() {
   const videoRef = useRef(null);
@@ -35,6 +40,8 @@ function Player() {
   }
 
   function updateProgress() {
+    const PERCENT_MAX = 100;
+
     const video = videoRef.current;
     const progress = (video.currentTime / video.duration) * PERCENT_MAX;
 
@@ -165,19 +172,10 @@ function Player() {
     !fullscreen ? openFullscreen(player) : closeFullscreen();
   }
 
-  
-  function PlayControls({ onPlayToggle }) {
-    return (
-      <div className='play-controls'>
-        <i className='fas fa-play' title='Play' id='play-btn' onClick={onPlayToggle}></i>
-      </div>
-    );
-  }
-
   return (
     <div className='player'>
       <video
-        src='https://assets.mixkit.co/videos/preview/mixkit-a-couple-of-cats-in-the-snow-9949-large.mp4'
+        src={VIDEO_URL}
         className='video'
         playsInline
         ref={videoRef}
@@ -192,51 +190,19 @@ function Player() {
           </div>
           <div className='control-group'>
             <div className='controls-left'>
-              <div className='play-controls'>
-                <i
-                  className='fas fa-play'
-                  title='Play'
-                  id='play-btn'
-                  onClick={onPlayToggle}></i>
-              </div>
-              <div className='volume'>
-                <div className='volume-icon'>
-                  <i
-                    className='fas fa-volume-up'
-                    title='Mute'
-                    id='volume-icon'
-                    onClick={onToggleMute}></i>
-                </div>
-                <div
-                  className='volume-range'
-                  title='Change Volume'
-                  onClick={onVolumeMouseDown}>
-                  <div className='volume-bar'></div>
-                </div>
-              </div>
+              <PlayControls onPlayToggle={onPlayToggle} />
+              <VolumeControls
+                onToggleMute={onToggleMute}
+                onVolumeMouseDown={onVolumeMouseDown}
+              />
             </div>
             <div className='controls-right'>
-              <div className='speed' title='Playback Rate'>
-                <select
-                  name='playbackRate'
-                  className='player-speed'
-                  onChange={onSpeedChange}>
-                  <option value='0.5'>0.5x</option>
-                  <option value='0.75'>0.75x</option>
-                  <option value='1' defaultValue>
-                    1x
-                  </option>
-                  <option value='1.5'>1.5x</option>
-                  <option value='2'>2x</option>
-                </select>
-              </div>
+              <SpeedControls onSpeedChange={onSpeedChange} />
               <div className='time'>
                 <span className='time-elapsed'>00:00 / </span>
                 <span className='time-duration'>2:38</span>
               </div>
-              <div className='fullscreen'>
-                <i className='fas fa-expand' onClick={onFullscreenToggle}></i>
-              </div>
+              <FullscreenToggle onFullscreenToggle={onFullscreenToggle} />
             </div>
           </div>
         </div>
