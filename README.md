@@ -1,10 +1,10 @@
-# react_Video Player: [LIVE DEMO](https://shcoobz.github.io/react_video-player/)
+# advancedJS_Video Player: [LIVE DEMO](https://shcoobz.github.io/advancedJS_video-player/)
 
-![react_Video Player](public/img/react_video-player.png)
+![advancedJS_Video Player](public/img/advancedJS_video-player.png)
 
 ## Summary
 
-react_Video Player provides a robust web application for media playback. It features a user-friendly interface that allows users to control video playback with functionalities like play/pause, volume control, speed adjustments, and fullscreen mode.
+advancedJS_Video Player provides a robust web application for media playback. It features a user-friendly interface that allows users to control video playback with functionalities like play/pause, volume control, speed adjustments, and fullscreen mode.
 
 The core functionality includes:
 
@@ -39,6 +39,6 @@ A fullscreen option is available to expand the video player to the entire screen
 
 ---
 
-_Note: This document provides an overview of react_Video Player. For detailed instructions and more information, please refer to the source code documentation._
+_Note: This document provides an overview of advancedJS_Video Player. For detailed instructions and more information, please refer to the source code documentation._
 
 _This project is a conversion from an earlier version built with vanilla JavaScript and HTML, available [here](https://github.com/Shcoobz/basicJS_video-player/). This conversion integrates React to enhance UI reactivity and maintainability._
